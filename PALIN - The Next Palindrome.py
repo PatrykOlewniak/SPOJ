@@ -20,46 +20,29 @@ Output:
 numbers = []
 
 def ask_for_INPUT():
-    amountOfPalindromes= raw_input()
+    amountOfPalindromes= input()
     for number in range(int(amountOfPalindromes)):
-        newValue = (raw_input())
-        numbers.append(newValue)
-
-def isPalindrome(number):
-    pass
+        newValue = input()
+        numbers.append(int(newValue))
 
 def number_to_list(number):
     return list(str(number))
 
-def palindrome_maker(listOfNumbers):
-    listLength = len(listOfNumbers)
-    if not isPalindrome(listOfNumbers):
-        if listLength%2==0:
-            for k in range((len(listOfNumbers)/2)):
-                if listOfNumbers[k]!=listOfNumbers[-k-1]:
-                    if listOfNumbers[-k-1]==int(9):
-                        listOfNumbers[-k-1]=str(0)
-                        listOfNumbers[-k - 2] =str(int(listOfNumbers[-k - 2]))+1
-                        palindrome_maker(listOfNumbers)
-                    else:
-                        listOfNumbers[-k - 1] = str(int(listOfNumbers[-k - 1]) + 1)
-                        palindrome_maker(listOfNumbers)
-
-
-    return listOfNumbers
-
-def get_the_lowest_next_palindrome(number):
-    number = number_to_list(number)
-    palindrome_maker(number)
-    return number
 
 def isPalindrome(number):
     tempList=number_to_list(number)
-    for k in range((len(tempList)/2)+1):
+    for k in range(int(len(tempList)/2)+1):
         if tempList[k]!=tempList[-k-1]:
             return False
     return True
 
+def palindrome_from_number(number):
+    number = number+1
+    while not(isPalindrome(number)):
+        number=number+1
+    return number
 
-k=8221
-print palindrome_maker(number_to_list(4123))
+ask_for_INPUT()
+for i in numbers:
+    print (palindrome_from_number(i))
+
