@@ -28,20 +28,38 @@ def ask_for_INPUT():
 def isPalindrome(number):
     pass
 
-if len(numbers)%2==0:
-    pass
+def number_to_list(number):
+    return list(str(number))
 
-k = "657576"
-def check(number):
-    for i in range((len(k)/2)+1):
-        if k[i]==k[-i-1]:
-            print "TAKA SAMA LICZBA NA %s pozycji oraz automatycznie na %s"%((int(i)+1),(len(k)-i))
+def palindrome_maker(listOfNumbers):
+    listLength = len(listOfNumbers)
+    if not isPalindrome(listOfNumbers):
+        if listLength%2==0:
+            for k in range((len(listOfNumbers)/2)):
+                if listOfNumbers[k]!=listOfNumbers[-k-1]:
+                    if listOfNumbers[-k-1]==int(9):
+                        listOfNumbers[-k-1]=str(0)
+                        listOfNumbers[-k - 2] =str(int(listOfNumbers[-k - 2]))+1
+                        palindrome_maker(listOfNumbers)
+                    else:
+                        listOfNumbers[-k - 1] = str(int(listOfNumbers[-k - 1]) + 1)
+                        palindrome_maker(listOfNumbers)
 
-        else:
-            k[-i]=int(k[-i])+1
-    check(number)
-    print number
 
-check("3333")
-#ask_for_INPUT()
-print numbers
+    return listOfNumbers
+
+def get_the_lowest_next_palindrome(number):
+    number = number_to_list(number)
+    palindrome_maker(number)
+    return number
+
+def isPalindrome(number):
+    tempList=number_to_list(number)
+    for k in range((len(tempList)/2)+1):
+        if tempList[k]!=tempList[-k-1]:
+            return False
+    return True
+
+
+k=8221
+print palindrome_maker(number_to_list(4123))
